@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Hussein - Data Science Portfolio</title>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #0a0a0b;
+            --secondary-bg: #1a1a1b;
+            --tertiary-bg: #252526;
+            --accent-color: #00d4ff;
+            --secondary-accent: #ff6b35;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --text-muted: #808080;
+            --border-color: #333333;
+            --gradient-primary: linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%);
+            --gradient-secondary: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --hover-shadow: 0 16px 48px rgba(0, 212, 255, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--primary-bg);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header Section */
+        .header {
+            background: var(--primary-bg);
+            position: relative;
+            padding: 120px 0 80px;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            margin: 0 auto 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            color: white;
+            font-weight: 700;
+            border: 4px solid var(--tertiary-bg);
+            box-shadow: var(--card-shadow);
+            position: relative;
+        }
+
+        .profile-img::after {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            padding: 2px;
+            background: var(--gradient-primary);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: subtract;
+            opacity: 0.6;
+        }
+
+        .header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 16px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .title {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        .header .location {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Navigation */
+        .nav {
+            background: rgba(26, 26, 27, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            gap: 40px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .nav a:hover {
+            color: var(--accent-color);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background: var(--secondary-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            margin-bottom: 64px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            margin: 24px auto 0;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .usp {
+            background: var(--tertiary-bg);
+            color: var(--text-primary);
+            padding: 40px;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            margin-top: 48px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .usp::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 16px 16px 0 0;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .skill-category {
+            background: var(--tertiary-bg);
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .skill-category h3 {
+            color: var(--accent-color);
+            margin-bottom: 24px;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-tag {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 16px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Education Section */
+        .education-item {
+            background: var(--tertiary-bg);
+            padding: 32px;
+            border-radius: 16px;
+            margin-bottom: 32px;
+            box-shadow: var(--card-shadow);
+            border-left: 4px solid var(--accent-color);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .education-item h3 {
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .education-item .degree {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .education-item .date {
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+
+        .education-item p:last-child {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+        }
+
+        .project-card {
+            background: var(--tertiary-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .project-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 24px;
+        }
+
+        .project-header h3 {
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .project-header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .project-body {
+            padding: 28px;
+        }
+
+        .project-body p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            background: var(--secondary-bg);
+            color: var(--text-secondary);
+            padding: 6px 14px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .service-card {
+            background: var(--tertiary-bg);
+            padding: 40px 32px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-secondary);
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 8px 24px rgba(255, 107, 53, 0.3);
+        }
+
+        .service-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Achievements Section */
+        .achievement-item {
+            background: var(--tertiary-bg);
+            padding: 32px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            box-shadow: var(--card-shadow);
+            border-left: 4px solid var(--secondary-accent);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .achievement-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .achievement-item h3 {
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .achievement-item p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--primary-bg);
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact .section-title {
+            color: var(--text-primary);
+        }
+
+        .contact-content > p {
+            font-size: 1.2rem;
+            margin-bottom: 48px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .contact-item {
+            background: var(--tertiary-bg);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .contact-item span {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .contact-item a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            color: var(--text-primary);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            margin-top: 40px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav ul {
+                flex-direction: column;
+                gap: 16px;
+                padding: 24px 0;
+            }
+            
+            .container {
+                padding: 0 16px;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+            
+            .section-title {
+                margin-bottom: 48px;
+            }
+            
+            .skills-grid,
+            .projects-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 80px 0 60px;
+            }
+            
+            .profile-img {
+                width: 120px;
+                height: 120px;
+                font-size: 48px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+        }
+
+        /* Scroll animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            padding: 10px 18px;
+            background: linear-gradient(45deg, #40E0D0, #4169E1);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(64, 224, 208, 0.3);
+        }
+
+        .project-link.secondary {
+            background: transparent;
+            border: 1px solid rgba(64, 224, 208, 0.5);
+        }
+
+        .project-link.secondary:hover {
+            background: rgba(64, 224, 208, 0.1);
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <!-- Header/Cover Section -->
+    <section class="header">
+        <div class="container">
+            <div class="header-content">
+                <div > <img src="ME1.png" alt="وصف للصورة"></div>
+                <h1>Ahmed Hussein Ahmed Mohamed</h1>
+                <p class="title">Junior Data Scientist</p>
+                <p class="location">📍 Cairo, Egypt</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>Welcome to my data science journey! I'm Ahmed Hussein, a passionate third-year Computer Science and AI student at Cairo University's Faculty of Computers and Artificial Intelligence. My fascination with data began during my academic studies, where I discovered the power of turning raw information into actionable insights.</p>
+                
+                <p>As a current scholarship recipient of the Digital Egypt Pioneers Initiative (DEPI), I'm dedicated to mastering the art and science of data analysis. I believe that every dataset tells a story, and I'm here to help you uncover yours.</p>
+
+                <div class="usp">
+                    <strong>My Value Proposition:</strong> I'm a junior Data Scientist with a solid foundation in mathematics and computer science. Skilled in Python (NumPy, pandas, Matplotlib, seaborn) and SQL. Completed academic and personal projects in predictive modelling and data visualization. Eager to apply analytical skills and grow in a collaborative, data-driven environment. I help individuals and companies analyse their data to achieve their goals and improve outcomes.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Data Science & Analysis</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">Seaborn</span>
+                        <span class="skill-tag">Data Visualization</span>
+                        <span class="skill-tag">EDA</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Databases & Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">Microsoft SQL</span>
+                        <span class="skill-tag">Jupyter Notebook</span>
+                        <span class="skill-tag">Google Colab</span>
+                        <span class="skill-tag">Git/GitHub</span>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title">Education </h2>
+            
+            <div class="education-item">
+                <h3>Cairo University – Faculty of Computers and Artificial Intelligence</h3>
+                <p class="degree">Bachelor's Degree in Computer Science and Artificial Intelligence</p>
+                <p class="date">Third-Year Student (Expected Graduation: 2027)</p>
+            </div>
+            
+            <div class="education-item">
+                <h3>Digital Egypt Pioneers Initiative (DEPI)</h3>
+                <p class="degree">Data Science and Machine Learning Scholarship (90 Hours)</p>
+                <p class="date">June 2025 – Present</p>
+                <p>Fully funded national scholarship focusing on Python, Data Analysis, Machine Learning algorithms, and real-world applications.</p>
+            </div>
+            
+            <div class="education-item">
+                <h3>Python Data Fundamentals – DataCamp</h3>
+                <p class="degree">Comprehensive Data Science Course (26 Hours)</p>
+                <p class="date">July 2025 - August 2025</p>
+                <p>Covered NumPy, Pandas, Matplotlib, Seaborn, Statistics, and Exploratory Data Analysis.</p>
+            </div>
+            
+            <div class="education-item">
+                <h3>Data Structures and Algorithms – Udemy</h3>
+                <p class="degree">Advanced Programming Course (76 Hours)</p>
+                <p class="date">December 2024 - May 2025</p>
+                <p>Strong foundation in memory management, recursion, and core data structures implementation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title"> Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Netflix Data Analysis (1990s Movies)</h3>
+                        <p>Comprehensive EDA on Netflix Dataset</p>
+                    </div>
+                    <div class="project-body">
+                        <p>Analyzed 8k+ Netflix records focusing on 1990s movie releases using advanced Python libraries for data manipulation and visualization.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">NumPy</span>
+                            <span class="tech-tag">Data Analysis</span>
+
+                             <div class="project-links">
+                        <a href="https://github.com/ahmed2005hussen/Netfilx_project" class="project-link" target="_blank">
+                            View on GitHub →
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>NYC Schools SAT Performance Analysis</h3>
+                        <p>Educational Data Insights</p>
+                    </div>
+                    <div class="project-body">
+                        <p>Analyzed NYC public school SAT performance, identifying top performers and calculating borough-level statistics with statistical insights.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Statistical Analysis</span>
+                            <span class="tech-tag">Data Cleaning</span>
+                            <span class="tech-tag">EDA</span>
+                                                         <div class="project-links">
+                        <a href="https://github.com/ahmed2005hussen/NYC-Public-Schools" class="project-link" target="_blank">
+                            View on GitHub →
+                        </a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Web Scraping - Football Data</h3>
+                        <p>Automated Data Collection</p>
+                    </div>
+                    <div class="project-body">
+                        <p>Built a Python script to scrape football match data from Yalla Kora, extracting key information and saving results into structured CSV format.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Web Scraping</span>
+                            <span class="tech-tag">CSV Processing</span>
+                            <span class="tech-tag">Data Collection</span>
+                            
+
+                             <div class="project-links">
+                        <a href="https://github.com/ahmed2005hussen/Web_Scrapping_Match_schedule" class="project-link" target="_blank">
+                            View on GitHub →
+                        </a>
+                        </div>
+
+
+                    <div class="project-links">
+                        <a href="https://www.linkedin.com/posts/ahmed-elsherif-119b60337_datascience-webscraping-python-activity-7361050590749048834-urLi?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAFS12qUBybAkYzPGxm58K3KNxJsDhqxHAxM" class="project-link secondary" target="_blank">
+                            LinkedIn Post →
+                        </a>
+                    </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Inventory & Sales Management System</h3>
+                        <p>Role-based Business Application</p>
+                    </div>
+                    <div class="project-body">
+                        <p>Developed a comprehensive Python application with secure authentication, inventory management, and automated stock updates for business operations.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">File Handling</span>
+                            <span class="tech-tag">Authentication</span>
+                            <span class="tech-tag">Business Logic</span>
+
+
+                                                         <div class="project-links">
+                        <a href="https://github.com/ahmed2005hussen/Super_Market_System" class="project-link" target="_blank">
+                            View on GitHub →
+                        </a>
+                        </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Fintech Competition Solution</h3>
+                        <p>Central Bank of Egypt Competition</p>
+                    </div>
+                    <div class="project-body">
+                        <p>Designed and developed a web application solving real-world fintech problems. Ranked top 3 among all teams at Cairo University's Faculty of Computers and AI.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Web Development</span>
+                            <span class="tech-tag">Fintech</span>
+                            <span class="tech-tag">Team Collaboration</span>
+                            <span class="tech-tag">Documentation</span>
+
+
+
+
+                    <div class="project-links">
+                        <a href="https://www.linkedin.com/posts/ahmed-elsherif-119b60337_fintech-finyology-smartbudgeters-activity-7356375504536408064-c_yS?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAFS12qUBybAkYzPGxm58K3KNxJsDhqxHAxM" class="project-link secondary" target="_blank">
+                            LinkedIn Post
+                        </a>
+                    </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Book Borrowing System</h3>
+                        <p>Django Web Application</p>
+                    </div>
+                    <div class="project-body">
+                        <p>A full-featured Django-based web application allowing users to browse and borrow books with comprehensive admin panel for book management.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Database Integration</span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title">Services Offered</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Data Analysis & Visualization</h3>
+                    <p>Transform your raw data into compelling visual stories and actionable insights using Python, Pandas, and advanced visualization libraries.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3>Exploratory Data Analysis</h3>
+                    <p>Uncover hidden patterns, trends, and relationships in your data through comprehensive statistical analysis and data exploration.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📈</div>
+                    <h3>Predictive Modeling</h3>
+                    <p>Build and deploy machine learning models to forecast trends, predict outcomes, and support data-driven decision making.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Web Scraping & Data Collection</h3>
+                    <p>Automate data collection from websites and online sources, creating structured datasets for your analysis needs.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🗄️</div>
+                    <h3>Database Design & Management</h3>
+                    <p>Design efficient database structures and implement data management solutions using SQL and modern database technologies.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📚</div>
+                    <h3>Data Science Consultation & Training</h3>
+                    <p>Provide guidance on data science best practices and conduct training sessions on Python programming and data analysis techniques.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="section">
+        <div class="container">
+            <h2 class="section-title">Achievements & Recognition</h2>
+            
+            <div class="achievement-item">
+                <h3>🏆 Top 3 Fintech Competition - Central Bank of Egypt</h3>
+                <p>Ranked among the top 3 teams in a competitive fintech challenge at Cairo University's Faculty of Computers and Artificial Intelligence, solving real-world financial technology problems.</p>
+            </div>
+            
+            <div class="achievement-item">
+                <h3>📺 YouTube Content Creator - 15K+ Views</h3>
+                <p>Created educational programming content reaching over 15,000 views, covering C++, Java, Data Structures, and Design Patterns, building an engaged learning community.</p>
+            </div>
+            
+            <div class="achievement-item">
+                <h3>🎓 DEPI Scholarship Recipient</h3>
+                <p>Selected for the prestigious Digital Egypt Pioneers Initiative fully-funded national scholarship in Data Science and Machine Learning.</p>
+            </div>
+            
+            <div class="achievement-item">
+                <h3>👨‍🏫 Programming Instructor at Cairo University</h3>
+                <p>Conducted C++ programming workshops for fellow students, enhancing technical understanding and developing strong communication skills through teaching.</p>
+            </div>
+            
+            <div class="achievement-item">
+                <h3>🏅 ECPC Qualification Participant</h3>
+                <p>Participated in the Egyptian Collegiate Programming Contest qualification round, demonstrating strong problem-solving capabilities in competitive programming.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title" style="color: white;">Let's Work Together</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 30px;">Ready to turn your data into insights? I'm here to help you unlock the potential hidden in your data and drive meaningful results for your business or research.</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <a href="mailto:ahmedhusseinelsharif@gmail.com">ahmedhusseinelsharif@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>📱</span>
+                        <a href="tel:+201066858421">+20 106 685 8421</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>💼</span>
+                        <a href="https://www.linkedin.com/in/ahmed-elsherif-119b60337/" target="_blank">LinkedIn Profile</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>👨‍💻</span>
+                        <a href="https://github.com/ahmed2005hussen" target="_blank">GitHub Portfolio</a>
+                    </div>
+                </div>
+                
+                <a href="mailto:ahmedhusseinelsharif@gmail.com" class="btn">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animation
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
